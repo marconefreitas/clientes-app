@@ -1,0 +1,59 @@
+<h1 class="mt-4">Serviço Prestado</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active"> Pesquisa</li>
+</ol>
+<div class="container">
+    <form #consultarForm="ngForm" (submit)="consultar()">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="inputNome">Nome Cliente:</label>
+                <input type="text" name="nome" id="inputNome" 
+                      [(ngModel)]="nome" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="inputMes">Mês:</label>
+                <select name="inputMes" [(ngModel)]="mes" class="form-control">
+                    <option value="">Selecione um mês</option>
+                    <option [value]="mes" *ngFor="let mes of meses">{{mes}}</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-search"></i>Consultar
+                </button>
+                <button type="button" class="btn btn-warning ml-2"
+                    routerLink="/servico-prestado-form" >
+                    <i class="fa fa-plus"></i> Novo
+                </button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div class="row">
+        <div class="alert alert-warning" *ngIf="message">
+            {{message}}
+        </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    
+                    <th>Cliente</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor=" let l of lista ">
+                        <td>{{l.cliente.nome}}</td>
+                        <td>{{l.descricao}}</td>
+                        <td>{{l.valor}}</td>
+                        <td>{{l.data}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
