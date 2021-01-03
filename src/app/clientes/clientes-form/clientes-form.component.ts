@@ -24,11 +24,14 @@ export class ClientesFormComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params =>{
+      if (params.id){
         this.service.getClienteById(params['id'])
             .subscribe(response =>{
               this.cliente = response;
         },             errorResponse => this.cliente = new Cliente());
+      }
     });
+  
  
   }
 
@@ -62,6 +65,6 @@ export class ClientesFormComponent implements OnInit {
 
   
   voltarHome():void {
-    this.router.navigate(['clientes-lista']);
+    this.router.navigate(['/clientes/lista']);
   }
 }

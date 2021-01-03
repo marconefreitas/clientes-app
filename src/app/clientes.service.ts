@@ -15,13 +15,25 @@ export class ClientesService {
   }
 
   salvar(cliente : Cliente) : Observable<Cliente> {
-    return this.http.post<Cliente>( `${this.url}` , cliente);
+    let token = JSON.parse(localStorage.getItem("access_token"));
+    let headers =  {
+      'Authorization': 'Bearer ' + token.access_token
+    };
+    return this.http.post<Cliente>( `${this.url}` , cliente,  {headers});
   } 
   atualizar(cliente : Cliente) : Observable<any> {
-    return this.http.put<Cliente>( `${this.url}/${cliente.id}`, cliente);
+    let token = JSON.parse(localStorage.getItem("access_token"));
+    let headers =  {
+      'Authorization': 'Bearer ' + token.access_token
+    };
+    return this.http.put<Cliente>( `${this.url}/${cliente.id}`, cliente,  {headers});
   } 
   deletarCliente(cliente : Cliente): Observable<any>{
-    return this.http.delete<Cliente>(`${this.url}/${cliente.id}`);
+    let token = JSON.parse(localStorage.getItem("access_token"));
+    let headers =  {
+      'Authorization': 'Bearer ' + token.access_token
+    };
+    return this.http.delete<Cliente>(`${this.url}/${cliente.id}`,  {headers});
   }
 
   getCliente() : Cliente {
@@ -31,7 +43,12 @@ export class ClientesService {
     return cliente;
   }
   getClientes() : Observable<Cliente[]>{
-    return this.http.get<Cliente[]>(this.url);
+    let token = JSON.parse(localStorage.getItem("access_token"));
+    let headers =  {
+      'Authorization': 'Bearer ' + token.access_token
+    };
+
+    return this.http.get<Cliente[]>(this.url, {headers});
   }
   getClienteById(id:number) : Observable<Cliente>{
     return this.http.get<any>(`${this.url}/${id}`);

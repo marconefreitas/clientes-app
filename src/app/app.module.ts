@@ -12,12 +12,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {ServicoPrestadoModule} from './servico-prestado/servico-prestado.module';
 import { ServicoPrestadoService } from './servico-prestado.service';
 import { LoginComponent } from './login/login.component';
+import { LayoutComponent } from './layout/layout.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    LayoutComponent,
 
   ],
   imports: [
@@ -30,7 +33,7 @@ import { LoginComponent } from './login/login.component';
     ServicoPrestadoModule
     
   ],
-  providers: [ClientesService, ServicoPrestadoService],
+  providers: [ClientesService, ServicoPrestadoService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
